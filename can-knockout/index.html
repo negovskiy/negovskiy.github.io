@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<style>:root{color-scheme:light}body{margin:0}img{max-width:100%}</style>
+<title>Can Knockout: World Tour</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700&display=swap">
+<style>
+  :root {
+    --bg: #F7F4EE;
+    --card: #FDFCF9;
+    --ink: #2F3444;
+    --muted: #6E7385;
+    --coral: #EE6A5B;
+    --coral-ink: #FFFFFF;
+    --line: #E6E1D6;
+    --sky: #BFD8EA;
+    --shadow: 0 1px 2px rgba(47,52,68,.06), 0 8px 24px rgba(47,52,68,.08);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --bg: #1C1F29; --card: #252936; --ink: #EEF0F5; --muted: #A3A8B8;
+      --coral: #F47C6E; --line: #353A4A; --sky: #34465A;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #1C1F29; --card: #252936; --ink: #EEF0F5; --muted: #A3A8B8;
+    --coral: #F47C6E; --line: #353A4A; --sky: #34465A;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
+  }
+  body {
+    background: var(--bg); color: var(--ink);
+    font: 16px/1.6 "Nunito Sans", ui-rounded, system-ui, -apple-system, sans-serif;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding-inline: 20px; padding-block: 40px 64px; display: grid; gap: 56px; }
+  h1, h2 { font-family: "Fredoka", ui-rounded, system-ui, sans-serif; font-weight: 600; text-wrap: balance; margin: 0; line-height: 1.1; }
+  h1 { font-size: clamp(34px, 6vw, 56px); }
+  h2 { font-size: clamp(24px, 3.4vw, 32px); }
+  p { margin: 0; max-width: 62ch; }
+  .label { font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+  .dots { display: flex; gap: 6px; }
+  .dots i { width: 14px; height: 18px; border-radius: 4px; display: block; }
+  header { display: grid; gap: 16px; }
+  .lede { font-size: 19px; color: var(--ink); }
+  .facts { display: flex; flex-wrap: wrap; gap: 10px; padding: 0; margin: 4px 0 0; list-style: none; }
+  .facts li { background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 6px 14px; font-weight: 600; font-size: 14px; font-variant-numeric: tabular-nums; }
+
+  .duo { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 40px; align-items: center; }
+  .duo figure { margin: 0; }
+  .device { background: #0E0F13; border-radius: 34px; padding: 12px; box-shadow: var(--shadow); max-width: 440px; }
+  .device img { display: block; width: 100%; height: auto; border-radius: 24px; }
+  .duo .copy { display: grid; gap: 16px; }
+  .duo ul { margin: 0; padding-left: 20px; display: grid; gap: 8px; max-width: 52ch; }
+  .tag { display: inline-block; background: var(--coral); color: var(--coral-ink); border-radius: 999px; padding: 4px 12px; font-weight: 700; font-size: 13px; width: fit-content; }
+  figcaption { color: var(--muted); font-size: 14px; margin-top: 10px; }
+
+  .gallery-head { display: grid; gap: 10px; }
+  .gallery { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; }
+  .gallery figure { margin: 0; }
+  .gallery img { display: block; width: 100%; height: auto; aspect-ratio: 540 / 1174; object-fit: cover; border-radius: 18px; box-shadow: var(--shadow); background: var(--sky); }
+  .gallery figcaption { font-size: 13px; }
+  .gallery figcaption b { color: var(--ink); font-weight: 700; }
+
+  .wip { border: 1px dashed var(--muted); border-radius: 14px; padding: 12px 16px; color: var(--muted); font-size: 15px; max-width: 70ch; }
+  .wip b { color: var(--ink); }
+  footer { border-top: 1px solid var(--line); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; color: var(--muted); font-size: 14px; }
+  a { color: var(--coral); font-weight: 700; }
+  a:focus-visible { outline: 2px solid var(--coral); outline-offset: 3px; border-radius: 4px; }
+
+  @media (max-width: 860px) {
+    .duo { grid-template-columns: 1fr; }
+    .device { margin: 0 auto; }
+    .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="dots" aria-hidden="true"><i style="background:#4F8FD6"></i><i style="background:#E0605A"></i><i style="background:#4FB17D"></i></div>
+    <h1>Can Knockout: World Tour</h1>
+    <p class="lede">A cozy can-smashing game set in 15 handmade miniature cities. Flick a ball, watch the cans with faces topple, and tour the world from Los Angeles to Sydney.</p>
+    <ul class="facts">
+      <li>15 cities on 5 continents</li>
+      <li>300 levels</li>
+      <li>First released 2016, rebuilt for 2.0</li>
+      <li>One developer, native Swift + SceneKit</li>
+      <li>Plays offline</li>
+    </ul>
+    <p class="wip"><b>Work in progress.</b> These are captures from current development builds, not final designs. Art, layout and UI may change before release.</p>
+  </header>
+
+  <section class="duo" aria-labelledby="duo-h">
+    <figure>
+      <div class="device"><img src="img/duo-outer-level-sdk271.jpg" alt="Los Angeles level 1 filling the iPhone Duo outer display edge to edge, with the city visible on both sides of the can table" width="1398" height="2034"></div>
+      <figcaption>iPhone Duo outer display, Los Angeles level 1. Full screen, built with the iOS 27.1 SDK. Development build, the final design may differ.</figcaption>
+    </figure>
+    <div class="copy">
+      <span class="tag">Coming for iPhone Duo, October 23</span>
+      <h2 id="duo-h">Made for the fold</h2>
+      <p>Every level is a little diorama. On the Duo's wider displays the camera keeps the whole can table and ball tray in view and shows more of the living city around it.</p>
+      <ul>
+        <li>Fills both displays edge to edge, no compatibility bars</li>
+        <li>Fold or unfold mid-throw and play carries straight on</li>
+        <li>HUD and sheets laid out around the side Dynamic Island</li>
+        <li>Playable in Split View</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="gallery-head" aria-labelledby="g-h">
+    <span class="label">Version 2.0 on iPhone, development builds</span>
+    <h2 id="g-h">A fairground classic, rebuilt as a world tour</h2>
+    <p>Each city has its own palette, landmarks, music, ball and a new hat for Captain Can, the tour guide.</p>
+    <div class="gallery">
+      <figure><img src="img/paris-menu.jpg" alt="Paris menu with lilac cans, the Eiffel Tower and Captain Can in a beret" loading="lazy"><figcaption><b>Paris</b>, city menu</figcaption></figure>
+      <figure><img src="img/mexicoCity-1-night.jpg" alt="Mexico City level at night with glowing pink cans on a lit table" loading="lazy"><figcaption><b>Mexico City</b>, night level</figcaption></figure>
+      <figure><img src="img/capeTown-1.jpg" alt="Cape Town level with Table Mountain and a beach ball ready to throw" loading="lazy"><figcaption><b>Cape Town</b>, level 1</figcaption></figure>
+      <figure><img src="img/amsterdam-menu.jpg" alt="Amsterdam menu with violet cans, canal houses and windmills" loading="lazy"><figcaption><b>Amsterdam</b>, city menu</figcaption></figure>
+      <figure><img src="img/losAngeles-reward-card.jpg" alt="Three-star reward card reading Lovely with coins earned" loading="lazy"><figcaption><b>Los Angeles</b>, reward card</figcaption></figure>
+    </div>
+  </section>
+
+  <footer>
+    <span>Can Knockout: World Tour, by Andrey Negovskiy</span>
+    <a href="https://apps.apple.com/app/id1165415884">View on the App Store</a>
+  </footer>
+</div>
+</body>
+</html>
